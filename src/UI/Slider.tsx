@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Fade } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
+
 
 const fadeImages = [
   {
@@ -29,8 +29,8 @@ const Slideshow = () => {
               src={fadeImage.url} 
               alt={fadeImage.caption} 
               layout="responsive" 
-              width={1920} // Example width
-              height={950} // Example height
+              width={1080} // Example width
+              height={1920} // Example height
               objectFit="cover"
             />
           </div>

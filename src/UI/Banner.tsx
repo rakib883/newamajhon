@@ -3,7 +3,7 @@ import React from 'react'
 function Banner() {
   return (
     <div>
-        <div className=" bg-bannerImage bg-no-repeat w-[100%] bg-cover py-10 mt-8 text-white">
+        <div className=" bg-bannerImage bg-no-repeat w-[100%] bg-cover py-10 mt-8 text-white" data-aos="zoom-in">
             <div className=" flex flex-col justify-center items-center py-8">
                 <h1 className="font-mainFont text-[13px] font-bold ">NEW ARRIVALS</h1> 
                 <p className="md:text-[60px] text-[24px] font-bold font-mainFont">Autumn is Coming</p>

@@ -7,6 +7,8 @@ import Header from "../UI/Header"
 import Layout from "@/UI/Layout";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'react-slideshow-image/dist/styles.css'
+import Foter from "@/UI/Foter";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +28,7 @@ export default function RootLayout({
       <Layout>
         <Header></Header>
         {children}
+        <Foter/>
       </Layout>
       </body>
     </html>

@@ -7,7 +7,7 @@ import { newamajhon } from "../../type";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function CollectionProduct() {
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -62,13 +62,15 @@ function CollectionProduct() {
   return (
     <div className="slider-container">
       {loader ? (
-        <ClipLoader
-          color="#123abc" // You can set your desired color
-          loading={loader}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+         <div className=" flex justify-center">
+               <ClipLoader
+                  color="#123abc" // You can set your desired color
+                  loading={loader}
+                  size={80}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+         </div>
       ) : (
         <Slider {...settings}>
           {products.length > 0 &&

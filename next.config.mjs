@@ -22,6 +22,10 @@ const nextConfig = {
             protocol: 'https',
             hostname: "minion-vinovatheme.myshopify.com",
           },
+          {
+            protocol: 'https',
+            hostname: "minion-vinovatheme.myshopify.com",
+          },
          
         ],
       },

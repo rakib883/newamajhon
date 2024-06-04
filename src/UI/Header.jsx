@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../Image/fabby.png';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoSearchOutline } from 'react-icons/io5';
@@ -11,11 +11,20 @@ import { useSession } from 'next-auth/react';
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { DiGitCompare } from "react-icons/di";
-
+import { useDispatch, useSelector } from 'react-redux';
+import {searchData} from "../Redux/productSlice"
 function Header() {
   const { data: session } = useSession();
- 
+  // this data send redux and recive denim page start
+    const [searchDataItem,setSearchData] = useState("")
+    const sendReduxData = useDispatch()
 
+    const inputValue =(e)=>{
+      setSearchData(e.target.value)
+      sendReduxData(searchData({searchDataItem}))
+    }
+  
+  // this data send redux and recive denim page end
   return (
     <div className="bg-[#131921]">
       <div className="header flex justify-between py-4 items-center mx-4 lg:mx-8">
@@ -28,7 +37,8 @@ function Header() {
         </div>
         <div className="search-area hidden lg:block w-[500px]">
           <div className="flex items-center rounded-md border-2 bg-white border-white focus-within:drop-shadow-lg focus-within:border-[#FEBD69]">
-            <input
+            <input 
+               onChange={inputValue}
               className="w-full px-2 focus:outline-none placeholder:font-mainFont font-mainFont"
               type="text"
               placeholder="Search amajhon in"

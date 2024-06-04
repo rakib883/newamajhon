@@ -56,10 +56,11 @@ function ShopLooks() {
              <div className="product grid md:grid-cols-4 grid-cols-2 gap-4 mt-10 mx-8">
                 {
                     product.map(item=>(
-                        <div key={item.id} className="main w-full cursor-pointer relative">
-                           <Image src={item.image} width={330} height={200}   alt="image"/>
-                            <div className="button-area w-full text-center  absolute top-[50%]">
-                                <div className="button-area  text-center">
+                        <div key={item.id} className="main w-full cursor-pointer group relative overflow-hidden">
+                           <Image className="group-hover:scale-125 duration-700" src={item.image} width={330} height={200}   alt="image"/>
+                            <div className="bg-gray-800 hidden group-hover:scale-125 group-hover:block duration-300 bg-opacity-50 absolute top-0 w-full h-full"></div>
+                            <div className="button-area hidden group-hover:block duration-1000     w-full text-center  absolute top-[50%]">
+                                <div className="button-area   text-center">
                                      <p className="bg-white inline-block px-4 py-2 rounded-md font-bold">Shop Now</p>
                                 </div>
                             </div>
