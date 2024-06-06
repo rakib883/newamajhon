@@ -47,7 +47,7 @@ function ShopLooks() {
                 <h1 className="font-mainFont font-bold md:text-[24px] text-[20px] my-4">SHOP THE LOOKS</h1>
                  <p className="font-thin text-[16px] text-[#494949]">
                     Our latest endeavour features designs from around the world with materials so comfortable 
-                    you won't want to wear anything else every again.
+                    you won t want to wear anything else every again
                  </p>
             </div>
             {/* header-area end */}

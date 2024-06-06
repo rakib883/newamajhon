@@ -21,7 +21,7 @@ function Login() {
   return (
     <div className="bg-gradient-to-t flex justify-center items-center from-green-400 to-blue-500 h-screen w-full">
        <div className=" max-w-lg shadow-xl  bg-blue-50/20 p-10 ">
-            <h1 className=" font-mainFont font-semibold text-xl text-center my-8">Hello, Wellcome</h1>
+            <h1 className=" font-mainFont font-semibold text-xl text-center my-8">Hello Wellcome</h1>
             <div className="gmail">
                <h1 className=" font-mainFont  text-[18px]">Inter your gmail</h1>
                 <input className="w-[300px] py-1 bg-slate-300 px-1 focus-within:outline-none rounded-sm" type="text" name="" id="" placeholder="Inter your gmail" />
@@ -49,7 +49,7 @@ function Login() {
                 </div>
             </div>
             <div className="create font-mainFont">
-               <p>You have don't account <span className="hover:text-black underline duration-300 text-white"><Link href="/register">Sign in</Link></span> </p>
+               <p>You have dont account <span className="hover:text-black underline duration-300 text-white"><Link href="/register">Sign in</Link></span> </p>
             </div>
        </div>
     </div>

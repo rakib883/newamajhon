@@ -13,6 +13,8 @@ import { IoSearchSharp } from "react-icons/io5";
 import { DiGitCompare } from "react-icons/di";
 import { useDispatch, useSelector } from 'react-redux';
 import {searchData, searchDataReset} from "../Redux/productSlice"
+import { FaSearch } from "react-icons/fa";
+import { motion } from "framer-motion"
 function Header() {
   const { data: session } = useSession();
   // this data send redux and recive denim page start
@@ -36,11 +38,17 @@ function Header() {
     console.log(searchDataItem)
   // this data send redux and recive denim page end
     
+  // mobile search bar start
+    const [mobileSearchArea,setMobileSearch] = useState(false)
+    const mobileSearch =()=>{
+      setMobileSearch(!mobileSearchArea)
+    }
+  // mobile search are end
    
 
   return (
-    <div className="bg-[#131921]">
-      <div className="header flex justify-between py-4 items-center mx-4 lg:mx-8">
+    <div className="bg-[#131921] sticky top-0">
+      <div className="header relative flex justify-between py-4 items-center mx-4 lg:mx-8">
         <div className="logo-area">
           <div
             className="logo cursor-pointer">
@@ -64,6 +72,9 @@ function Header() {
           </div>
         </div>
         <div className="user-area flex items-center gap-4">
+         <div onClick={mobileSearch} className="content cursor-pointer relative">
+              <FaSearch  className="text-white text-xl md:hidden" />
+            </div>
           <div className="user-profile hidden md:block">
             {session ? (
               <div className="use flex items-center text-white gap-2 cursor-pointer">
@@ -84,7 +95,7 @@ function Header() {
             )}
           </div>
           <div className="add flex gap-6">
-          <div className="content cursor-pointer relative">
+            <div className="content cursor-pointer relative">
               <DiGitCompare className="text-white text-2xl" />
             </div>
             <div className="content cursor-pointer ">
@@ -98,6 +109,29 @@ function Header() {
             </div>
           </div>
         </div>
+        {/* mobile are searc bar */}
+        { mobileSearchArea &&
+        <motion.div 
+        initial={{ x: "100%" }}
+        animate={{ x: "calc(100% - 100%)" }}
+        className="w-full shadow-2xl  absolute top-[75px]">
+          <div className="search-area lg:block w-full">
+            <div className="flex items-center rounded-md border-2 bg-white border-white focus-within:drop-shadow-lg focus-within:border-[#FEBD69]">
+              <input 
+                value={searchDataItem}
+                onChange={inputValue}
+                className="w-full px-2 focus:outline-none placeholder:font-mainFont font-mainFont"
+                type="text"
+                placeholder="Search amajhon in"
+              />
+              <div onClick={searchDataHandeler} className="py-2 px-4 rounded-r-sm bg-[#F3A847] cursor-pointer">
+                <IoSearchOutline className="text-2xl text-white" />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+       }
+        {/* mobile are search end */}
       </div>
     </div>
   );
