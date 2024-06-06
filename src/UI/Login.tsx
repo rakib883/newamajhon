@@ -15,7 +15,7 @@ function Login() {
 
       session?.user && router.push("/")
 
-   },[session?.user])
+   },[session?.user,router])
 
    
   return (
