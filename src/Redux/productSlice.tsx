@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
+
 export const counterSlice = createSlice({
   name: 'Myproject',
   initialState: {
     addData :[],
-    searchData :[]
+    searchData :""
   },
   reducers: {
     denimData:(state,action)=>{
@@ -12,11 +14,14 @@ export const counterSlice = createSlice({
     },
     searchData:(state,action)=>{
          state.searchData = action.payload
+    },
+    searchDataReset:(state,action)=>{
+       state.searchData = ""
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const {denimData,searchData } = counterSlice.actions
+export const {denimData,searchData,searchDataReset} = counterSlice.actions
 
 export default counterSlice.reducer

@@ -17,10 +17,10 @@ export default function Home() {
 
   useEffect(() => {
     if (pathName === "/" && searchbarData !== "") {
-      router.push("/denim");
+       router.push("/denim");
     }
   }, [pathName, searchbarData, router]);
-
+  console.log(searchbarData)
   return (
     <div className="main-content">
       <Slideshow />
