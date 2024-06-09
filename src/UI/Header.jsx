@@ -31,9 +31,7 @@ function Header() {
     const searchDataHandeler = ()=>{
       sendReduxData(searchData({searchDataItem}))
       setSearchData("")
-      setTimeout(()=>{
-        resetDispatch(searchDataReset())
-      },1000)
+     
     }
     console.log(searchDataItem)
   // this data send redux and recive denim page end
@@ -47,7 +45,7 @@ function Header() {
    
 
   return (
-    <div className="bg-[#131921] sticky top-0">
+    <div className="bg-[#131921] sticky top-0 z-50">
       <div className="header relative flex justify-between py-4 items-center mx-4 lg:mx-8">
         <div className="logo-area">
           <div
