@@ -4,8 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { denimData, } from "../../Redux/productSlice";
 import Image from 'next/image';
 import { MdKeyboardArrowUp } from "react-icons/md";
-import { Transform } from 'stream';
+import Link from 'next/link';
 
+interface newamazon{
+   pathName : any;
+
+}
 function Page() {
     const dispatch = useDispatch();
 
@@ -88,17 +92,17 @@ const [priceRange,setPriceRange] = useState("")
                      {
                       filteredDenimData.length ?  filteredDenimData.map((item:any) => (
                         <div key={item.id} className="main border p-4 rounded shadow">
-                            <div className="image flex justify-center items-center">
+                            <Link href={{ pathname : `/singleproduct/${item?.id}`, query : { id : item?.id,} }} className="image flex justify-center items-center">
                                 <Image  className="w-full h-60 object-contain  duration-500"
                                   src={item.image} width={100} height={100}  alt="image"/>
-                            </div>
+                            </Link>
                             <h3 className="font-bold">{item.title.substring(0,10)}</h3>
                             <p>{item.description.substring(0,30)}</p>
                             <p className="font-semibold font-mainFont my-4">${item.price}</p>
                             <div className="add cursor-pointer bg-sky-950 active:bg-white active:text-black">
                                 <p className=" text-white text-center py-1">Add to cart</p>
                             </div>
-                        </div>
+                        </div> 
                        )) 
                        : <div className="">
                             Data is loading

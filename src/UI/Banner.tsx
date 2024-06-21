@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import AOS from 'aos';
+
 
 function Banner() {
+  useEffect(() => {
+    AOS.init({ duration: "2500"});
+  }, []);
   return (
     <div>
         <div className=" bg-bannerImage bg-no-repeat w-[100%] bg-cover py-10 mt-8 text-white" data-aos="zoom-in">

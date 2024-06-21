@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import FormattedPrize from "./FormattedPrize";
 import { newamajhon } from "../../type";
 import ClipLoader from "react-spinners/ClipLoader";
+import Link from "next/link";
 
 function CollectionProduct() {
   const [loader, setLoader] = useState(false);
@@ -83,13 +84,15 @@ function CollectionProduct() {
               >
                 <div className="relative overflow-hidden w-full h-0 pb-[100%]">
                   {/* This ensures a square aspect ratio */}
-                  <Image
-                    src={item?.image}
-                    alt={item?.title}
-                    layout="fill"
-                    objectFit="contain"
-                    className="absolute hover:scale-125 duration-300"
-                  />
+                  <Link href={`singleproduct/${item?.id}`}>
+                    <Image
+                      src={item?.image}
+                      alt={item?.title}
+                      layout="fill"
+                      objectFit="contain"
+                      className="absolute hover:scale-125 duration-300"
+                    />
+                  </Link>
                 </div>
                 <div className="proze-area py-4 text-center">
                   <h1 className="text-[16px] font-mainFont font-semibold text-[#EAB734]">

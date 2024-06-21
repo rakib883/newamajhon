@@ -16,3 +16,13 @@
     width:100%;
     object-fit:cover;
   }
+
+  .customDesign::after{
+     content: '';
+     position: absolute;
+     height: 2px;
+     width: 20%;
+     background:#f3a847;
+     left:0;
+     bottom:0;
+  }

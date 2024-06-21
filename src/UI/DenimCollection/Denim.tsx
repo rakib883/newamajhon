@@ -26,7 +26,7 @@ function Denim() {
         <div className="mx-8 grid grid-rows-4 grid-flow-col gap-4">
           <div className="row-span-4 col-span-4">
             <Link href="/denim">
-              <div  className="image w-full overflow-hidden relative" data-aos="zoom-in">
+              <div  className="image w-full overflow-hidden relative">
                 <Image className="hover:scale-125 duration-300" src={bigImage} alt="image" />
                 <div className="overflow-area absolute bottom-5 text-center w-full">
                   <h1 className="md:text-[30px] texdt-[16px] font-bold font-mainFont text-white">DENIM-JACKET</h1>
@@ -39,7 +39,7 @@ function Denim() {
             </Link>
           </div>
           <div className="row-span-2 col-span-2">
-            <div className="content w-full bg-[green] overflow-hidden relative" data-aos="zoom-in">
+            <div className="content w-full bg-[green] overflow-hidden relative">
               <Image className="hover:scale-125 duration-300" src={small2} alt="image" />
               <div className="absolute bottom-5 w-full text-center">
                 <p className="md:text-[30px] text-[10px] text-white font-mainFont font-bold">DENIM MINI SKIRT</p>
@@ -48,7 +48,7 @@ function Denim() {
             </div>
           </div>
           <div className="row-span-2 col-span-2">
-            <div className="content w-full bg-[green] overflow-hidden relative" data-aos="zoom-in">
+            <div className="content w-full bg-[green] overflow-hidden relative">
               <Image className="hover:scale-125 duration-300" src={small1} alt="image" />
               <div className="absolute bottom-5 w-full text-center">
                 <h1 className="md:text-[30px] text-[16px] font-mainFont font-bold text-white">HOODED DENIM</h1>
