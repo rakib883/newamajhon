@@ -154,7 +154,7 @@ function Page() {
       </div>
       <div className="all-content md:w-[80%]">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-4">
-          {filteredData?.map((item: Product) => (
+          {filteredData?.map((item:any) => (
             <div key={item.id} className="main border p-4 rounded shadow">
               <Link href={{ pathname: `/singleproduct/${item?.id}`, query: { id: item?.id } }} className="image flex justify-center items-center">
                 <Image className="w-full h-60 object-contain duration-500"
@@ -168,7 +168,7 @@ function Page() {
                   addCarDispatch(addCart({
                     id: item?.id,
                     image: item?.image,
-                    title: item.title,
+                    title: item?.title,
                     price: item?.price,
                     quentity: 1
                   }));
