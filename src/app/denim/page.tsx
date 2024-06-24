@@ -53,7 +53,7 @@ function Page() {
           return  item.price >= priceRange
        })
        setFilteredData(currentData)
-    },[])
+    },[priceRange])
     // price range area end
     
 
@@ -118,10 +118,10 @@ function Page() {
                                     <input onChange={() => filterHandler("electronics")} value={"electronics"} className="h-4 w-4" type="checkbox" /> <p>electronics</p>
                                 </div>
                                 <div className="electronics cursor-pointer flex items-center gap-2 py-2 font-mainFont text-md">
-                                    <input onChange={() => filterHandler("men's clothing")} value={"men's clothing"} className="h-4 w-4" type="checkbox" /> <p>men's clothing</p>
+                                    <input onChange={() => filterHandler("men's clothing")} value={"men's clothing"} className="h-4 w-4" type="checkbox" /> <p>mens clothing</p>
                                 </div>
                                 <div className="electronics cursor-pointer flex items-center gap-2 py-2 font-mainFont text-md">
-                                    <input onChange={() => filterHandler("women's clothing")} value={"women's clothing"} className="h-4 w-4" type="checkbox" /> <p>women's clothing</p>
+                                    <input onChange={() => filterHandler("women's clothing")} value={"women's clothing"} className="h-4 w-4" type="checkbox" /> <p>womens clothing</p>
                                 </div>
                             </div>
                         </div>
