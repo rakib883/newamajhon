@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useEffect, useState, ChangeEvent } from 'react';
 import Image from 'next/image';
 import { MdKeyboardArrowUp } from "react-icons/md";
@@ -10,11 +10,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {
   id: number;
-  image: string; // Changed to string
+  image?: string; // Updated to string
   title: string;
   description: string;
   price: number;
   category: string;
+  quantity: number;
 }
 
 interface State {
@@ -25,10 +26,6 @@ interface State {
 
 interface RootState {
   product: State;
-}
-
-interface newamazon {
-  pathName: any;
 }
 
 function Page() {
@@ -168,9 +165,9 @@ function Page() {
                   addCarDispatch(addCart({
                     id: item?.id,
                     image: item?.image,
-                    title: item?.title,
+                    title: item.title,
                     price: item?.price,
-                    quentity: 1
+                    quantity: 1 // Corrected to quantity
                   }));
                   toast.success("Added to cart successfully");
                 }} className="text-white text-center py-1">Add to cart</p>
