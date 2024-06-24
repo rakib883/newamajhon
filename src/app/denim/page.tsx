@@ -53,7 +53,7 @@ function Page() {
           return  item.price >= priceRange
        })
        setFilteredData(currentData)
-    },[priceRange])
+    },[])
     // price range area end
     
 
