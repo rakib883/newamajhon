@@ -4,6 +4,17 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
+interface Product {
+  id: number;
+  title: string;
+  // Add other properties from the product data as needed
+}
+
+
+
+
+
 function Feature() {
   const settings = {
     dots: false,
@@ -40,15 +51,13 @@ function Feature() {
     ]
   };
 
-  const [featureData, setFeatureData] = useState([]);
+  const [featureData, setFeatureData] = useState<Product[]>([]);
 
   useEffect(() => {
     fetch("https://api.escuelajs.co/api/v1/products")
       .then(res => res.json())
       .then(data => setFeatureData(data));
   }, []);
-
-  console.log(featureData);
 
   return (
     <div className="slider-container">
