@@ -15,7 +15,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import {searchData, searchDataReset} from "../Redux/productSlice"
 import { FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion"
+import { Modal } from 'react-responsive-modal';
+
 function Header() {
+
+  const [open, setOpen] = useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
+
+
+
+
+
+
+
+
+
   const { data: session } = useSession();
   // this data send redux and recive denim page start
     const [searchDataItem,setSearchData] = useState("")
@@ -42,10 +58,76 @@ function Header() {
       setMobileSearch(!mobileSearchArea)
     }
   // mobile search are end
+
+
+  // card data count start
+  const cartData = useSelector((state)=>state.allData.cartData)
+  console.log(cartData.length)
+  // cart data count end
    
 
   return (
-    <div className="bg-[#131921] sticky top-0 z-50">
+    <div className="bg-[#131921] sticky top-0 z-40">
+       <div className="cart">
+            <div>
+              <Modal open={open} onClose={onCloseModal} center>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+                  hendrerit risus, sed porttitor quam.
+                  
+                </p>
+              </Modal>
+          </div>
+      </div>
       <div className="header relative flex justify-between py-4 items-center mx-4 lg:mx-8">
         <div className="logo-area">
           <div
@@ -99,10 +181,11 @@ function Header() {
             <div className="content cursor-pointer ">
               <FaRegHeart className="text-white text-2xl" />
             </div>
-            <div className="content cursor-pointer relative">
+            <div onClick={onOpenModal} className="content cursor-pointer relative">
               <FaShoppingCart className="text-white text-2xl" />
               <div className="badge absolute w-6 h-6 top-[-16px] left-[16px]  border-[#F3A847] border-[2px]  rounded-full flex justify-center items-center">
-                 <p className="text-[#F3A847]">55</p>
+                 <p  className="text-[#F3A847]">{cartData.length}</p>
+                 
               </div>
             </div>
           </div>

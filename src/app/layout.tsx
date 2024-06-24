@@ -9,6 +9,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'react-slideshow-image/dist/styles.css'
 import Foter from "@/UI/Foter";
 import BottomNavbar from "@/UI/BottomNavbar";
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-responsive-modal/styles.css';
 
 
 const inter = Inter({ subsets: ["latin"] });

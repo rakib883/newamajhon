@@ -59,7 +59,7 @@ function CollectionProduct() {
       },
     ],
   };
-
+  console.log(products)
   return (
     <div className="slider-container">
       {loader ? (
@@ -84,7 +84,7 @@ function CollectionProduct() {
               >
                 <div className="relative overflow-hidden w-full h-0 pb-[100%]">
                   {/* This ensures a square aspect ratio */}
-                  <Link href={`singleproduct/${item?.id}`}>
+                  <Link href={{pathname:`singleproduct/${item?.id}`, query:{id:item?.id}}}>
                     <Image
                       src={item?.image}
                       alt={item?.title}

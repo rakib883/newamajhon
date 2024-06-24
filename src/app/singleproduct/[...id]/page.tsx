@@ -89,7 +89,7 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
   };
    
  
-
+console.log("data",id)
   useEffect(() => {
     const fetchRelatedData = async () => {
       try {
@@ -178,7 +178,7 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
         </div>
       )}
       {/* related post area start */}
-      <div className="main">
+      <div className="main mx-8">
         <div className="content relative">
            <h1 className="font-mainFont customDesign text-2xl font-semibold">Related Product</h1> 
         </div>

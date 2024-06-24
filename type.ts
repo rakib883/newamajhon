@@ -4,4 +4,5 @@ export interface newamajhon{
     _id:string,
     category:string,
     price:number
+    id:number
 }
