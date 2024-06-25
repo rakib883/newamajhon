@@ -62,7 +62,7 @@ function Header() {
 
   // card data count start
   const cartData = useSelector((state)=>state.allData.cartData)
-  console.log(cartData.length)
+  console.log(cartData)
   // cart data count end
    
 
@@ -71,60 +71,15 @@ function Header() {
        <div className="cart">
             <div>
               <Modal open={open} onClose={onCloseModal} center>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                  pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-                  hendrerit risus, sed porttitor quam.
-                  
-                </p>
+                 <div className="all-content">
+                  {
+                      cartData?.map((item)=>(
+                        <div key={item.id} className="maim">
+                          <Image src={item.image} alt="pic" height={100} width={100}/>
+                        </div>
+                      ))
+                    }
+                 </div>
               </Modal>
           </div>
       </div>

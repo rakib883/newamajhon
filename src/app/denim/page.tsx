@@ -169,7 +169,7 @@ function Page() {
                     price: item?.price,
                     quantity: 1 // Corrected to quantity
                   }));
-                  toast.success("Added to cart successfully");
+                  toast.success(`${item.title}Added to cart successfully`);
                 }} className="text-white text-center py-1">Add to cart</p>
               </div>
             </div>
