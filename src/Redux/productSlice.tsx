@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface StateType {
   addData: any[];
   searchData: string;
-  cartData: Array<{ id: number; quentity: number }>;
+  cartData:any[];
 }
 
 const initialState: StateType = {
