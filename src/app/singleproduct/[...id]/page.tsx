@@ -215,7 +215,7 @@ console.log("data",id)
               itemClass="carousel-item-padding-5-px"
             >
               {
-                sliderData.map((item: SingleData) => (
+                sliderData.map((item:any) => (
                   <div key={item.id} className="main mx-8 cursor-pointer rounded-md shadow-xl border-[1px] border-[black] flex flex-col items-center">
                     <div onClick={() => setSliderDataDynamic(item?.id)} className="image h-full">
                       <Image className="w-full h-40 object-cover" src={item.image} width={100} height={100} alt="slide" />
