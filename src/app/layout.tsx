@@ -11,6 +11,7 @@ import Foter from "@/UI/Foter";
 import BottomNavbar from "@/UI/BottomNavbar";
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-responsive-modal/styles.css';
+import 'sweetalert2/src/sweetalert2.scss'
 
 
 const inter = Inter({ subsets: ["latin"] });

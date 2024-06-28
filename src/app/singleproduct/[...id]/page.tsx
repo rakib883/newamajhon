@@ -10,16 +10,18 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import { addCart } from '@/Redux/productSlice';
 
 
 
-const CustomLeftArrow = ({ onClick }) => (
+const CustomLeftArrow = ({ onClick }:any) => (
   <button className="custom-arrow left-2 custom-left-arrow absolute top-[50%]" onClick={onClick}>
      <FaArrowLeft   className="custom-icon-prev" />
   </button>
 );
 
-const CustomRightArrow = ({ onClick }) => (
+const CustomRightArrow = ({ onClick }:any) => (
   <button className="custom-arrow right-2 custom-right-arrow absolute top-[50%]" onClick={onClick}>
     <FaArrowRight  className="custom-icon-prev" />
   </button>
@@ -104,6 +106,13 @@ console.log("data",id)
     fetchRelatedData();
   }, []);
  console.log(sliderDataDynamic)
+   
+  // add data dispatch are are  start
+   const addDataDispatch = useDispatch()
+  // add data dispatch are end
+
+
+
   return (
     <div>
       {loader ? (
@@ -165,7 +174,7 @@ console.log("data",id)
                     <GoDash className="" />
                   </div>
                 </div>
-                <div className="main-area mt-4 flex items-center gap-6 border-[1px] border-black">
+                <div onClick={()=>addDataDispatch(addCart({}))} className="main-area mt-4 flex items-center gap-6 border-[1px] border-black">
                   <div className="increment hover:bg-yellow-600 active:bg-white font-mainFont bg-[#f3a847] w-full p-2 text-center">
                     Add to cart
                   </div>

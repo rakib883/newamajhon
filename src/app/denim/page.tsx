@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '@/Redux/productSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Puff } from 'react-loader-spinner';
 
 interface Product {
   id: number;
@@ -29,14 +30,27 @@ interface RootState {
 }
 
 function Page() {
-  const cardData = useSelector((state: RootState) => state.product);
-  console.log(cardData);
-
+// data filture state area
   const [prizeRange, setPrizeRange] = useState<Product[]>([]);
   const [denimData, setDenimData] = useState<Product[]>([]);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
 
+  const filterHandler = (category: string) => {
+    const currentData = denimData.filter((item: Product) => {
+      return item.category === category;
+    });
+    setFilteredData(currentData);
+  };
+// data filture are end
+
+// loading are start
+const [Productloading,setProductLoading] = useState(false)
+// loading are end
+
+
+// data faching area start
   useEffect(() => {
+    setProductLoading(true)
     const fetchData = async () => {
       try {
         const response = await fetch("https://fakestoreapi.com/products");
@@ -49,10 +63,13 @@ function Page() {
       } finally {
         console.log("done");
       }
+      setProductLoading(false)
     };
     fetchData();
   }, []);
+// data faching are end
 
+// prize range areastart
   const [priceRange, setPriceRange] = useState("");
   useEffect(() => {
     const currentData = prizeRange.filter((item: Product) => {
@@ -60,20 +77,19 @@ function Page() {
     });
     setFilteredData(currentData);
   }, [priceRange, prizeRange]);
+// prize range area end
 
+// ablity area start
   const [ability, setAbility] = useState(false);
   const abilityHandler = () => {
     setAbility(!ability);
   };
 
-  const filterHandler = (category: string) => {
-    const currentData = denimData.filter((item: Product) => {
-      return item.category === category;
-    });
-    setFilteredData(currentData);
-  };
+// ablity area end
 
+// send to redux start
   const addCarDispatch = useDispatch();
+  // send to redux end
 
   return (
     <div className="flex md:gap-6 mx-8">
@@ -150,8 +166,23 @@ function Page() {
         </div>
       </div>
       <div className="all-content md:w-[80%]">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-4">
-          {filteredData?.map((item:any) => (
+         { Productloading &&
+            <div className="loader flex justify-center items-center mt-[200px] ">
+              <Puff
+                  visible={true}
+                  height="80"
+                  width="80"
+                  color="#4fa94d"
+                  ariaLabel="puff-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                /> 
+            </div>
+          }
+         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-4">
+
+          {
+           filteredData?.map((item:any) => (
             <div key={item.id} className="main border p-4 rounded shadow">
               <Link href={{ pathname: `/singleproduct/${item?.id}`, query: { id: item?.id } }} className="image flex justify-center items-center">
                 <Image className="w-full h-60 object-contain duration-500"
@@ -174,7 +205,7 @@ function Page() {
               </div>
             </div>
           ))}
-        </div>
+        </div> 
       </div>
       <ToastContainer autoClose={5000} position="top-center" />
     </div>
