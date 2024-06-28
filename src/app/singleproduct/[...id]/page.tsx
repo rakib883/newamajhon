@@ -174,7 +174,8 @@ console.log("data",id)
                     <GoDash className="" />
                   </div>
                 </div>
-                <div onClick={()=>addDataDispatch(addCart({}))} className="main-area mt-4 flex items-center gap-6 border-[1px] border-black">
+                {/* onClick={()=>addDataDispatch(addCart({}))}  */}
+                <div  className="main-area mt-4 flex items-center gap-6 border-[1px] border-black">
                   <div className="increment hover:bg-yellow-600 active:bg-white font-mainFont bg-[#f3a847] w-full p-2 text-center">
                     Add to cart
                   </div>
