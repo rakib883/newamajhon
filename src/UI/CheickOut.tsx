@@ -10,6 +10,8 @@ interface DataItem {
   upazelas: string[];
 }
 
+
+
 const data: DataItem[] = [
   { zela: 'Select zela', upazelas: ['Select Upazela'] },
   { zela: 'Dhaka', upazelas: ['Tejgaon', 'Dhanmondi', 'Gulshan'] },
@@ -33,14 +35,13 @@ function CheickOut() {
 //   order summery data  start
 const summeryData = useSelector((state:any)=>state?.allData.cartData)
 const [total,settotal] = useState()
-useEffect(()=>{
+  // total price start
     let price = 0;
     summeryData.map((item:any)=>{
         price += item.quentity * item.price
     })
-    settotal(price)
-},[summeryData])
-console.log(total)
+    // total price are start
+
 // order summery end
 
 
@@ -213,7 +214,7 @@ const radioHandeler =(items:any)=>{
                    {/* subtotal area start */}
                    <div className="flex justify-between items-center">
                         <p className=" font-bold">Subtotal</p>
-                        <p className="font-bold"><PriceFormat price={total}/></p>
+                        <p className="font-bold"><PriceFormat price={price}/></p>
                    </div>
                    {/* subtotal area end */}
 
@@ -236,7 +237,7 @@ const radioHandeler =(items:any)=>{
                    {/* total are start */}
                    <div className="flex justify-between items-center">
                         <p className=" font-bold">Total</p>
-                        <p className="font-bold"><PriceFormat price={total}/></p>
+                        <p className="font-bold"><PriceFormat price={price}/></p>
                    </div>
                    {/* total area end */}
 
