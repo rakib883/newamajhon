@@ -12,7 +12,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { DiGitCompare } from "react-icons/di";
 import { useDispatch, useSelector } from 'react-redux';
-import {cartSingleDataRemove, searchDataReset,resetCart, resetCartItems, productIncrement, productDecrement} from "../Redux/productSlice"
+import {cartSingleDataRemove,  resetCartItems, productIncrement, productDecrement} from "../Redux/productSlice"
 import { FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion"
 import { Modal } from 'react-responsive-modal';
@@ -52,13 +52,7 @@ function Header() {
     }
    
 
-    const resetDispatch = useDispatch()
-    const searchDataHandeler = ()=>{
-      // sendReduxData(searchData({searchDataItem}))
-      setSearchData("")
-     
-    }
-   
+  
   // this data send redux and recive denim page end
     
   // mobile search bar start
@@ -251,7 +245,7 @@ function Header() {
               type="text"
               placeholder="Search amajhon in"
             />
-            <div onClick={searchDataHandeler} className="py-2 px-4 rounded-r-sm bg-[#F3A847] cursor-pointer">
+            <div  className="py-2 px-4 rounded-r-sm bg-[#F3A847] cursor-pointer">
               <IoSearchOutline className="text-2xl text-white" />
             </div>
           </div>
