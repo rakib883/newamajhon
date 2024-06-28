@@ -292,11 +292,13 @@ const radioHandeler =(items:any)=>{
         </div>
         {/* cheick out are end */}
       </div> 
-      : <div className="nodata text-center font-mainFont font-bold">
+      : <div className="nodata text-center font-mainFont font-bold my-8">
           <p>You cart Empty</p>
        </div>
       }
+      {/* bottom banner start */}
       <CheickBanner/>
+      {/* bottom banner end */}
     </div>
   );
 }

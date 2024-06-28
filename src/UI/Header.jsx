@@ -7,17 +7,23 @@ import { FaUserAlt } from 'react-icons/fa';
 import { IoSearchOutline } from 'react-icons/io5';
 import { FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { FaRegHeart } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { DiGitCompare } from "react-icons/di";
 import { useDispatch, useSelector } from 'react-redux';
-import {cartSingleDataRemove, searchData, searchDataReset,resetCart, resetCartItems, productIncrement, productDecrement} from "../Redux/productSlice"
+import {cartSingleDataRemove, searchDataReset,resetCart, resetCartItems, productIncrement, productDecrement} from "../Redux/productSlice"
 import { FaSearch } from "react-icons/fa";
 import { motion } from "framer-motion"
 import { Modal } from 'react-responsive-modal';
 import PriceFormat from './PriceFormat';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+import { FaRegUser } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
+import { GoHome } from "react-icons/go";
+import Seperator from './Seperator';
+import { IoIosHelpBuoy } from "react-icons/io";
+import { CiLogin } from "react-icons/ci";
 
 function Header() {
 
@@ -48,7 +54,7 @@ function Header() {
 
     const resetDispatch = useDispatch()
     const searchDataHandeler = ()=>{
-      sendReduxData(searchData({searchDataItem}))
+      // sendReduxData(searchData({searchDataItem}))
       setSearchData("")
      
     }
@@ -131,6 +137,15 @@ function Header() {
      
    }
   // custom modal handeler end
+
+
+
+  // profile handeler start
+  const [profile,serProfile] = useState(false)
+  const profileDetils =()=>{
+    serProfile(!profile)
+  }
+  // profile handeler end
 
   return (
     <div className="bg-[#131921] sticky top-0 z-40">
@@ -247,16 +262,54 @@ function Header() {
             </div>
           <div className="user-profile hidden md:block">
             {session ? (
-              <div className="use flex items-center text-white gap-2 cursor-pointer">
-                <div className="image-area">
-                   <Image className="rounded-full" src={session?.user?.image} height={50} width={50} alt="user" />
+             <div onClick={profileDetils} className="all-content relative">
+                 <div className="use flex items-center text-white gap-2 cursor-pointer">
+                      <div className="image-area">
+                        <Image className="rounded-full" src={session?.user?.image} height={50} width={50} alt="user" />
+                      </div>
+                      <div className="text-area leading-4">
+                        <p className="font-mainFont text-md">{session?.user?.name}</p>
+                        <p className="font-mainFont ">{session?.user?.email}</p>
+                      </div>
                 </div>
-                <div className="text-area leading-4">
-                  <p className="font-mainFont text-md">{session?.user?.name}</p>
-                  <p className="font-mainFont ">{session?.user?.email}</p>
+                {/* user account are start */}
+                { profile &&
+                <div className="profile  absolute top-14 w-full border bg-white rounded-md">
+                   <div className="all-content m-4 cursor-pointer">
+                      <div className="user flex gap-2 items-center">
+                      <FaRegUser /> <p>Account</p>
+                      </div>
+                   </div>
+                   <div className="all-content m-4 cursor-pointer">
+                      <div className="user flex gap-2 items-center">
+                      <FaRegMessage /> <p>Message</p>
+                      </div>
+                   </div>
+                   <div className="all-content m-4 cursor-pointer">
+                      <div className="user flex gap-2 items-center">
+                      <FaRegHeart /> <p>Wishlist</p>
+                      </div>
+                   </div>
+                   <div className="all-content m-4 cursor-pointer">
+                      <div className="user flex gap-2 items-center">
+                      <GoHome /> <p>Boking</p>
+                      </div>
+                   </div>
+                   <Seperator/>
+                   <div className="all-content m-4 cursor-pointer">
+                      <div className="user flex gap-2 items-center">
+                      <IoIosHelpBuoy  /> <p>Help</p>
+                      </div>
+                   </div>
+                   <div  onClick={() =>signOut()} className="all-content m-4 cursor-pointer">
+                      <div className="user flex gap-2 items-center">
+                        <CiLogin   /> <p>Log out</p>
+                      </div>
+                   </div>
                 </div>
-               
-              </div>
+                }
+                {/* user are end */}
+             </div>
             ) : (
               <Link href="/login" className="use flex items-center text-white gap-2 cursor-pointer">
                 <FaUserAlt className="text-white" />

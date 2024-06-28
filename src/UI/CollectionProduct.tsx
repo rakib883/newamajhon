@@ -6,6 +6,8 @@ import FormattedPrize from "./FormattedPrize";
 import { newamajhon } from "../../type";
 import ClipLoader from "react-spinners/ClipLoader";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { addCart } from "@/Redux/productSlice";
 
 function CollectionProduct() {
   const [loader, setLoader] = useState(false);
@@ -59,7 +61,12 @@ function CollectionProduct() {
       },
     ],
   };
-  console.log(products)
+  
+  // buy now area start
+   const buynoeDispatch = useDispatch()
+  // buy now are end
+
+console.log(products)
   return (
     <div className="slider-container">
       {loader ? (
@@ -104,7 +111,9 @@ function CollectionProduct() {
                   <p className="font-mainFont text-md font-semoBold">
                     <FormattedPrize amount={item?.price} />
                   </p>
-                  <div className="buy-area active:bg-slate-800 bg-[#537BDE] mx-4 py-1 text-white font-mainFont font-semibold">
+                  <div
+                 
+                  className="buy-area active:bg-slate-800 bg-[#537BDE] mx-4 py-1 text-white font-mainFont font-semibold">
                     Buy Now
                   </div>
                 </div>
