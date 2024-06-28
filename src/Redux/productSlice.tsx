@@ -9,7 +9,6 @@ interface StateType {
 
 const initialState: StateType = {
   addData: [],
-  searchData: "",
   cartData: [],
 };
 
@@ -20,12 +19,7 @@ export const counterSlice = createSlice({
     denimData: (state, action: PayloadAction<any[]>) => {
       state.addData = action.payload;
     },
-    setSearchData: (state, action: PayloadAction<string>) => {
-      state.searchData = action.payload;
-    },
-    searchDataReset: (state) => {
-      state.searchData = "";
-    },
+   
     addCart: (state, action: PayloadAction<{ id: number; quentity: number }>) => {
       const existData = state.cartData.find(item => item.id === action.payload.id);
       if (existData) {
@@ -58,6 +52,6 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { denimData,productIncrement,productDecrement, setSearchData, searchDataReset, addCart,cartSingleDataRemove,resetCartItems } = counterSlice.actions;
+export const { denimData,productIncrement,productDecrement, addCart,cartSingleDataRemove,resetCartItems } = counterSlice.actions;
 
 export default counterSlice.reducer;
