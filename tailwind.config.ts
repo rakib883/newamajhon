@@ -13,7 +13,7 @@ const config: Config = {
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'fetureBanner': "url('../Image/fetureBanner.jpg')",
         "bannerImage": "url('../Image/banner.jpg')",
-        "checkOut" :"url('../image/check.jpg')"
+       
       },
       fontFamily: {
         "mainFont": ["Nunito Sans", "sans-serif"],
