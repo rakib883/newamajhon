@@ -19,7 +19,7 @@ export const counterSlice = createSlice({
       state.addData = action.payload;
     },
    
-    addCart: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
+    addCart: (state, action) => {
       const existData = state.cartData.find(item => item.id === action.payload.id);
       if (existData) {
         existData.quantity += 1;

@@ -193,6 +193,9 @@ const [Productloading,setProductLoading] = useState(false)
                <div className="add cursor-pointer bg-sky-950 active:bg-white active:text-black">
                 <p onClick={() => {
                   addCarDispatch(addCart({
+                    image:item.image,
+                    title:item?.title,
+                    price:item?.price,
                     id: item?.id,
                     quantity: 1 // Corrected to quantity
                   }));
