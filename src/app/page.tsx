@@ -15,12 +15,7 @@ export default function Home() {
   const pathName = usePathname();
   const router = useRouter();
 
-  useEffect(() => {
-    if (pathName === "/" && searchbarData !== "") {
-       router.push("/denim");
-    }
-  }, [pathName, searchbarData, router]);
-  console.log(searchbarData)
+
   return (
     <div className="main-content">
       <Slideshow />
