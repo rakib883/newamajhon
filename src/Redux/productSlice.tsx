@@ -19,12 +19,12 @@ export const counterSlice = createSlice({
       state.addData = action.payload;
     },
    
-    addCart: (state, action: PayloadAction<{ id: number; quentity: number }>) => {
+    addCart: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
       const existData = state.cartData.find(item => item.id === action.payload.id);
       if (existData) {
-        existData.quentity += 1;
+        existData.quantity += 1;
       } else {
-        state.cartData.push({ ...action.payload, quentity: 1 });
+        state.cartData.push({ ...action.payload, quantity: 1 });
       }
     },
     cartSingleDataRemove:(state,action)=>{
@@ -36,15 +36,15 @@ export const counterSlice = createSlice({
     productIncrement:(state,action)=>{
         const inculedProduct = state.cartData.find((item:any)=>item.id === action.payload.id)
         if(inculedProduct){
-          inculedProduct.quentity ++
+          inculedProduct.quantity ++
         }
     },
     productDecrement:(state,action)=>{
       const decrementData = state.cartData.find((item:any)=>item?.id === action?.payload?.id )
-      if(decrementData?.quentity === 1){
-          decrementData.quentity = 1
+      if(decrementData?.quantity === 1){
+          decrementData.quantity = 1
       }else{
-        decrementData.quentity --
+        decrementData.quantity --
       }
     }
   },

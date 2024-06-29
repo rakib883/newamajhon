@@ -38,7 +38,7 @@ const [total,settotal] = useState()
   // total price start
     let price = 0;
     summeryData.map((item:any)=>{
-        price += item.quentity * item.price
+        price += item.quantity * item.price
     })
     // total price are start
 
@@ -198,11 +198,11 @@ const radioHandeler =(items:any)=>{
                                 <div className="pragraph">
                                     <p className="relative">
                                         {item?.title.substring(0,20)}....
-                                        <p className="absolute -top-4 -right-4">X{item.quentity}</p>
+                                        <p className="absolute -top-4 -right-4">X{item.quantity}</p>
                                     </p>
                                     <p></p>
                                 </div>
-                                <div className="prize"><PriceFormat price={item.price * item.quentity}/></div>
+                                <div className="prize"><PriceFormat price={item.price * item.quantity}/></div>
                             </div>
                         ))
                     } 

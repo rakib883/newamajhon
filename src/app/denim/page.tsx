@@ -89,7 +89,7 @@ const [Productloading,setProductLoading] = useState(false)
 // send to redux start
   const addCarDispatch = useDispatch();
   // send to redux end
-
+  console.log(filteredData)
   return (
     <div className="flex md:gap-6 mx-8">
       <div className="filter md:w-[20%] hidden md:block">
@@ -190,18 +190,15 @@ const [Productloading,setProductLoading] = useState(false)
               <h3 className="font-bold">{item?.title.substring(0, 10)}</h3>
               <p>{item?.description.substring(0, 30)}</p>
               <p className="font-semibold font-mainFont my-4">${item.price}</p>
-              {/* <div className="add cursor-pointer bg-sky-950 active:bg-white active:text-black">
+               <div className="add cursor-pointer bg-sky-950 active:bg-white active:text-black">
                 <p onClick={() => {
                   addCarDispatch(addCart({
                     id: item?.id,
-                    image: item?.image,
-                    title: item?.title,
-                    price: item?.price,
                     quantity: 1 // Corrected to quantity
                   }));
                   toast.success(`${item.title}Added to cart successfully`);
                 }} className="text-white text-center py-1">Add to cart</p>
-              </div> */}
+              </div> 
             </div>
           ))}
         </div> 

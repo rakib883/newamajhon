@@ -69,7 +69,7 @@ function Header() {
    useEffect(()=>{
      let totalPrice = 0;
      cartData.map((item)=>{
-      totalPrice += item.price * item.quentity
+      totalPrice += item.price * item.quantity
     })
     setTotalPrize(totalPrice)
    },[cartData])
@@ -146,7 +146,7 @@ function Header() {
        { openModal ?
           <div className={`${openModal === 2 ? "hidden" : ""}`}>
                 <div classname="">
-                  <Modal className="bg bg-green-800" open={open} onClose={onCloseModal}   classNames={{modal: 'customModal',}} center>
+                  <Modal open={open} onClose={onCloseModal}   classNames={{modal: 'customModal',}} center>
                   <p className="text-3xl font-mainFont font-bold text-center">Your Cart</p>
                     { cartData.length > 0 ?
                     <div className="all-content mt-6">
@@ -156,7 +156,7 @@ function Header() {
                             <th>Image</th>
                             <th>Title</th>
                             <th>Price</th>
-                            <th>Quentity</th>
+                            <th>quantity</th>
                             <th>Subtotal</th>
                             <th>Remove</th>
                           </tr>
@@ -176,7 +176,7 @@ function Header() {
                                     <div onClick={()=>incrementDispatch(productIncrement({
                                       id:item?.id
                                     }))} className="increment cursor-pointer">+</div>
-                                    <div className="quentity">{item.quentity}</div>
+                                    <div className="quantity">{item.quantity}</div>
                                     {/* decrement area start  */}
                                     <div 
                                     onClick={()=>decrementDispatch(productDecrement({
@@ -187,7 +187,7 @@ function Header() {
                                   </div>
                                   {/* increment decrement are end */}
                                 </td>
-                                <td className=' py-4'><PriceFormat price={item.price*item.quentity}/></td>
+                                <td className=' py-4'><PriceFormat price={item.price*item.quantity}/></td>
                                 <td onClick={()=>singlaDataRemove(cartSingleDataRemove({
                                   id:item?.id
                                 }))} className="cursor-pointer" py-4>X</td>
