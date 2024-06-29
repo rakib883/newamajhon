@@ -197,7 +197,7 @@ const [Productloading,setProductLoading] = useState(false)
                     title:item?.title,
                     price:item?.price,
                     id: item?.id,
-                    quantity: 1 // Corrected to quantity
+                    quantity: 1 
                   }));
                   toast.success(`${item.title}Added to cart successfully`);
                 }} className="text-white text-center py-1">Add to cart</p>
