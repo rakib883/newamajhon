@@ -145,8 +145,8 @@ function Header() {
     <div className="bg-[#131921] sticky top-0 z-40">
        { openModal ?
           <div className={`${openModal === 2 ? "hidden" : ""}`}>
-                <div>
-                  <Modal open={open} onClose={onCloseModal}   classNames={{modal: 'customModal',}} center>
+                <div classname="">
+                  <Modal className="bg bg-green-800" open={open} onClose={onCloseModal}   classNames={{modal: 'customModal',}} center>
                   <p className="text-3xl font-mainFont font-bold text-center">Your Cart</p>
                     { cartData.length > 0 ?
                     <div className="all-content mt-6">
