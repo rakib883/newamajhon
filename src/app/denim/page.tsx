@@ -89,7 +89,7 @@ const [Productloading,setProductLoading] = useState(false)
 // send to redux start
   const addCarDispatch = useDispatch();
   // send to redux end
-  console.log(filteredData)
+
   return (
     <div className="flex md:gap-6 mx-8">
       <div className="filter md:w-[20%] hidden md:block">

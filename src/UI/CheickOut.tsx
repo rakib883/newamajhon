@@ -4,7 +4,8 @@ import Seperator from './Seperator';
 import { useSelector } from 'react-redux';
 import PriceFormat from './PriceFormat';
 import CheickBanner from './CheickBanner';
-
+import {loadStripe} from '@stripe/stripe-js';
+import axios from 'axios';
 interface DataItem {
   zela: string;
   upazelas: string[];
@@ -52,7 +53,29 @@ const radioHandeler =(items:any)=>{
 }
 // bank detils end
 
+ 
+//  stripe pament start
 
+const stripePromise = loadStripe("pk_test_51PWscOL3BkBJk9RpVuFlO4f7SrTvDNHnFCVae0x6buv1S703qEvd3iEnDfqVQU9Iz1z6WDhV3M8IfhS1Za0O8v1z00UzkBSn5i")
+const pamenthandeler = async()=>{
+  const stripe = await stripePromise
+  const response = await fetch("/api/pament",{
+     method:"POST",
+     headers:{"Content-Type":"application/json"},
+     body:JSON.stringify({
+       item:summeryData
+     })
+  })
+   const checkoutSession = await  response?.json()
+   console.log(checkoutSession)
+   const result:any =await stripe?.redirectToCheckout({
+     sessionId:checkoutSession.id
+   })
+   
+}
+
+
+// stripe pament end
 
 
   return (
@@ -283,7 +306,7 @@ const radioHandeler =(items:any)=>{
                 </div>
 
                 {/* create order button start */}
-                <div className="button hover:bg-slate-700 duration-300 text-lg py-2 mx-4 my-4 cursor-pointer text-center font-bold font-mainFont bg-black text-white">
+                <div  onClick={pamenthandeler} className="button hover:bg-slate-700 duration-300 text-lg py-2 mx-4 my-4 cursor-pointer text-center font-bold font-mainFont bg-black text-white">
                     <p>Place order</p>
                 </div>
                 {/* create order button are end */}
