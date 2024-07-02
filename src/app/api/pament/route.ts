@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from 'stripe';
 
-export const POST = async (request: NextRequest) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2022-11-15' // Ensure you use the correct API version
-  });
 
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-06-20' 
+});
+
+export const POST = async (request: NextRequest) => {
+ 
   try {
     const reqBody = await request.json();
     const { item } = reqBody;
@@ -14,7 +17,7 @@ export const POST = async (request: NextRequest) => {
       quantity: item.quantity,
       price_data: {
         currency: "usd",
-        unit_amount: item.price * 100, // Corrected from 'unite_amount' to 'unit_amount'
+        unit_amount: item.price * 100, 
         product_data: {
           name: item.title,
           description: item.title
@@ -34,7 +37,7 @@ export const POST = async (request: NextRequest) => {
       message: "All OK, server connected",
       id: session.id
     });
-  } catch (error) {
+  } catch (error:any) {
     console.error(error);
     return NextResponse.json({
       message: "Server error",
