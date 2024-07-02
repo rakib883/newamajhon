@@ -3,8 +3,8 @@ import { useEffect, useState, ChangeEvent } from 'react';
 import Image from 'next/image';
 import { MdKeyboardArrowUp } from "react-icons/md";
 import Link from 'next/link';
-import { useDispatch} from 'react-redux';
-import { addCart } from '@/Redux/productSlice';
+import { useDispatch, useSelector} from 'react-redux';
+import { addCart, productDecrement } from '@/Redux/productSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Puff } from 'react-loader-spinner';
@@ -89,6 +89,13 @@ const [Productloading,setProductLoading] = useState(false)
 // send to redux start
   const addCarDispatch = useDispatch();
   // send to redux end
+
+
+  // addCard data dynamic increment decrement start
+  const cartButtonData = useSelector((item:any)=>item.allData.cartData)
+  const ProductIncrement = useDispatch()
+  const decrementProduct = useDispatch()
+   // addCard data dynamic increment decrement end
 
   return (
     <div className="flex md:gap-6 mx-8">
@@ -181,7 +188,10 @@ const [Productloading,setProductLoading] = useState(false)
          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-4">
 
           {
-           filteredData?.map((item:Product) => (
+           filteredData?.map((item:Product) =>{
+              const cartData = cartButtonData.find((reduxData:any)=>reduxData.id === item.id)
+              console.log(cartData)
+            return(
             <div key={item.id} className="main border p-4 rounded shadow">
               <Link href={{ pathname: `/singleproduct/${item?.id}`, query: { id: item?.id } }} className="image flex justify-center items-center">
                 <Image className="w-full h-60 object-contain duration-500"
@@ -190,6 +200,31 @@ const [Productloading,setProductLoading] = useState(false)
               <h3 className="font-bold">{item?.title.substring(0, 10)}</h3>
               <p>{item?.description.substring(0, 30)}</p>
               <p className="font-semibold font-mainFont my-4">${item.price}</p>
+              {
+                cartData ? 
+                
+                <div className="content flex items-center justify-between w-full bg-black rounded-full">
+                     <div 
+                     onClick={()=>ProductIncrement(addCart({
+                      image:item.image,
+                      title:item?.title,
+                      price:item?.price,
+                      id: item?.id,
+                     }))}
+                     className="increment flex justify-center items-center cursor-pointer bg-[#082f49] w-10 h-10 rounded-full text-white text-lg">+</div>
+                     <div className="price text-white">{cartData.quantity}</div>
+                     <div 
+                      onClick={()=>decrementProduct(productDecrement({
+                          image:item.image,
+                          title:item?.title,
+                          price:item?.price,
+                          id: item?.id,
+                      }))}
+                     className="increment flex justify-center items-center cursor-pointer bg-[#082f49] w-10 h-10 rounded-full text-white text-lg">-</div>
+                </div>
+
+
+                :
                <div className="add cursor-pointer bg-sky-950 active:bg-white active:text-black">
                 <p onClick={() => {
                   addCarDispatch(addCart({
@@ -202,8 +237,10 @@ const [Productloading,setProductLoading] = useState(false)
                   toast.success(`${item.title}Added to cart successfully`);
                 }} className="text-white text-center py-1">Add to cart</p>
               </div> 
+              }
             </div>
-          ))}
+            )
+          })}
         </div> 
       </div>
       <ToastContainer autoClose={5000} position="top-center" />

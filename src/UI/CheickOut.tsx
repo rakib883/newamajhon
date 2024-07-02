@@ -59,18 +59,25 @@ const radioHandeler =(items:any)=>{
 const stripePromise = loadStripe("pk_test_51PWscOL3BkBJk9RpVuFlO4f7SrTvDNHnFCVae0x6buv1S703qEvd3iEnDfqVQU9Iz1z6WDhV3M8IfhS1Za0O8v1z00UzkBSn5i")
 const pamenthandeler = async()=>{
   const stripe = await stripePromise
-  const response = await fetch("/api/pament",{
-     method:"POST",
-     headers:{"Content-Type":"application/json"},
-     body:JSON.stringify({
-       item:summeryData
-     })
-  })
-   const checkoutSession = await  response?.json()
-   console.log(checkoutSession)
-   const result:any =await stripe?.redirectToCheckout({
-     sessionId:checkoutSession.id
+   try{
+      
+    const response = await fetch("/api/pament",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({item:summeryData})
    })
+    
+    const session = await response.json()
+    console.log(session)
+
+    const result = await  stripe?.redirectToCheckout({
+        sessionId:session.id
+    })
+
+   }catch(error){
+
+   }
+  
    
 }
 

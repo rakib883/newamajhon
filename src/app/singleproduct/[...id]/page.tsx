@@ -10,7 +10,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '@/Redux/productSlice';
 
 
@@ -91,7 +91,7 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
   };
    
  
-console.log("data",id)
+
   useEffect(() => {
     const fetchRelatedData = async () => {
       try {
@@ -105,13 +105,25 @@ console.log("data",id)
 
     fetchRelatedData();
   }, []);
- console.log(sliderDataDynamic)
-   
+ 
+  // singla data face redux and display area start
+    const [singleData,setSingleData] = useState([])
+     const faceCartData = useSelector((item:any)=>item?.allData?.cartData)
+
+      useEffect(()=>{
+          const cardData = faceCartData.filter((item:any)=>item.id == id)
+          // const quantity =  cardData.map((item:any)=>item.quantity)
+          setSingleData(cardData)
+      },[id,faceCartData])
+  
+      console.log("this is data",  singleData)
   // add data dispatch are are  start
    const addDataDispatch = useDispatch()
   // add data dispatch are end
 
-
+  // add to cart data add area start
+  const addCartDispatch = useDispatch()
+  // add to card data area end
 
   return (
     <div>
@@ -169,7 +181,15 @@ console.log("data",id)
                   <div className="increment hover:bg-yellow-600 bg-[#f3a847] p-3">
                     <FiPlus className="text-[black]" />
                   </div>
-                  <div className="amount">0</div>
+                  <div className="amount">
+
+                     {  
+                       
+                       singleData.map((item:any)=>(
+                         <p key={item.quantity}>{item.quantity ? item.quantity : 0 }</p>
+                       )) 
+                    } 
+                  </div>
                   <div className="decrement hover:bg-yellow-600 bg-[#f3a847] p-3">
                     <GoDash className="" />
                   </div>
@@ -235,7 +255,10 @@ console.log("data",id)
                       {/* prize and wish list area end */}
 
                       {/* add to cart area start */}
-                      <div className="button w-full bg-indigo-500 text-center hover:bg-indigo-700 duration-300 text-white">
+                      <div 
+                      
+                      
+                      className="button w-full bg-indigo-500 text-center hover:bg-indigo-700 duration-300 text-white">
                         <p>Add to cart</p>
                       </div>
                       {/* add cart area end */}
