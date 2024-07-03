@@ -206,7 +206,7 @@ function Header() {
                                 </div>
                             </div>
                             <div onClick={modalCustomHandeler}  className="bg-amber-600 hover:bg-orange-600 mx-10 text-white font-mainFont cursor-pointer">
-                                <div className="text-center py-2">
+                                <div className="text-center py-2 text-xs md:text-base">
                                   <Link href="/cart">
                                     <p classNames="text-center">
                                       view to cart
