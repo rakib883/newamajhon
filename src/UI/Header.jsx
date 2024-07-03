@@ -197,11 +197,11 @@ function Header() {
                       </table>
                       <div className="res flex justify-between mt-4">
                         <div onClick={resetCart} className="reset cursor-pointer  ">
-                          <p className="bg-amber-600 hover:bg-orange-600 active:text-black active:bg-white px-4 py-2 text-[white] font-mainFont ">Reset Cart</p>
+                          <p className="bg-amber-600 hover:bg-orange-600 active:text-black active:bg-white px-2 md:px-4 text-xs py-2 text-[white] font-mainFont ">Reset Cart</p>
                         </div>
-                        <div className=" flex flex-col gap-4">
+                        <div className=" flex flex-col gap-2 md:gap-4">
                             <div className="amount cursor-pointer mx-10 bg-amber-600 hover:bg-orange-600 max-w-[300px] px-8 py-2">
-                                <div className="prize flex gap-2 font-mainFont text-white">
+                                <div className="prize flex gap-2 font-mainFont text-xs text-white">
                                     <p> Cheick out now</p>( <PriceFormat price={total}/>)
                                 </div>
                             </div>
@@ -232,11 +232,11 @@ function Header() {
           <div
             className="logo cursor-pointer">
             <Link href="/">
-              <Image src={logo} height={100} width={100} alt="logo" />
+              <h1 className="text-white font-mainFont font-bold text-xl">BuyNow.com</h1>
             </Link>
           </div>
         </div>
-        <div className="search-area hidden lg:block flex-1 mx-2">
+        <div className="search-area hidden lg:block  mx-2">
           <div className="flex items-center rounded-md border-2 bg-white border-white focus-within:drop-shadow-lg focus-within:border-[#FEBD69]">
             <input 
               value={searchDataItem}
@@ -342,7 +342,7 @@ function Header() {
                 type="text"
                 placeholder="Search amajhon in"
               />
-              <div onClick={searchDataHandeler} className="py-2 px-4 rounded-r-sm bg-[#F3A847] cursor-pointer">
+              <div onClick={mobileSearch} className="py-2 px-4 rounded-r-sm bg-[#F3A847] cursor-pointer">
                 <IoSearchOutline className="text-2xl text-white" />
               </div>
             </div>

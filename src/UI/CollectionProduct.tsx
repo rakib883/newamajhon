@@ -6,8 +6,9 @@ import FormattedPrize from "./FormattedPrize";
 import { newamajhon } from "../../type";
 import ClipLoader from "react-spinners/ClipLoader";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { addCart } from "@/Redux/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart, productDecrement, productIncrement } from "@/Redux/productSlice";
+import OrderButton from "./OrderButton";
 
 function CollectionProduct() {
   const [loader, setLoader] = useState(false);
@@ -63,10 +64,17 @@ function CollectionProduct() {
   };
   
   // buy now area start
-   const buynoeDispatch = useDispatch()
+   const buynowDispatch = useDispatch()
   // buy now are end
 
-console.log(products)
+//  redux data recive start
+ const reduxData = useSelector((item:any)=>item?.allData?.cartData)
+ const sliderIncrement = useDispatch()
+ const sliderDecrement = useDispatch()
+ 
+// redux data recive end
+
+
   return (
     <div className="slider-container">
       {loader ? (
@@ -82,7 +90,10 @@ console.log(products)
       ) : (
         <Slider {...settings}>
           {products.length > 0 &&
-            products.slice(0, 5).map((item: newamajhon) => (
+            products.slice(0, 5).map((item: newamajhon) =>{
+              const incrementDecrement = reduxData.find((reduxData:any)=>reduxData?.id === item?.id )
+              console.log(incrementDecrement)
+              return(
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2 }}
@@ -111,14 +122,46 @@ console.log(products)
                   <p className="font-mainFont text-md font-semoBold">
                     <FormattedPrize amount={item?.price} />
                   </p>
-                  <div
-                 
-                  className="buy-area active:bg-slate-800 bg-[#537BDE] mx-4 py-1 text-white font-mainFont font-semibold">
-                    Buy Now
-                  </div>
+                    <div className="order">
+                      { incrementDecrement ? 
+                              <div className="order">
+                                <OrderButton 
+                                 className="bg-amber-400" 
+                                  incrementData={()=>sliderIncrement(productIncrement({
+                                        image:item?.image,
+                                        title:item?.title,
+                                        price:item?.price,
+                                        id: item?.id,
+                                    }))}
+
+                                    quantity ={incrementDecrement.quantity}
+
+                                    decrement ={()=>sliderDecrement(productDecrement({
+                                      image:item?.image,
+                                      title:item?.title,
+                                      price:item?.price,
+                                      id: item?.id,
+                                    }))}
+                                
+                                />
+                              </div>
+                              :
+                             <div  
+                              onClick={()=>buynowDispatch(addCart({
+                                image:item?.image,
+                                title:item?.title,
+                                price:item?.price,
+                                id: item?.id,
+                              }))}
+                              className="buy-area active:bg-slate-800 bg-[#537BDE] mx-4 py-1 text-white font-mainFont font-semibold">
+                                 Buy Now
+                             </div>    
+                      }
+                    </div>
                 </div>
               </motion.div>
-            ))}
+              )
+})}
         </Slider>
       )}
     </div>

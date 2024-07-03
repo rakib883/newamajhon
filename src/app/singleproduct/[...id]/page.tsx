@@ -11,7 +11,8 @@ import "react-multi-carousel/lib/styles.css";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
-import { addCart } from '@/Redux/productSlice';
+import { addCart, productDecrement, productIncrement } from '@/Redux/productSlice';
+import OrderButton from '@/UI/OrderButton';
 
 
 
@@ -116,7 +117,6 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
           setSingleData(cardData)
       },[id,faceCartData])
   
-      console.log("this is data",  singleData)
   // add data dispatch are are  start
    const addDataDispatch = useDispatch()
   // add data dispatch are end
@@ -125,6 +125,27 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
   const addCartDispatch = useDispatch()
   // add to card data area end
 
+
+
+
+  // add data area start 
+  const singleDataQuantity = faceCartData.find((item:any)=>item.id === (incomingData?.id ? incomingData?.id : sliderDataDynamic) )
+ 
+ // add data area end
+  
+//  add to cart are start
+const addToCartSliderData = useDispatch()
+const incrementData = useDispatch()
+const decrementData = useDispatch()
+// add to cart are end
+console.log(sliderDataDynamic)
+
+
+// slider  increment data start
+const incrementSliderData = useDispatch()
+const decrementSliderData = useDispatch()
+const addToCart = useDispatch()
+// slider increment data start
   return (
     <div>
       {loader ? (
@@ -177,29 +198,53 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
               {/* price area end */}
               {/* order button area start */}
               <div className="content inline-block my-4 cursor-pointer">
-                <div className="main-area flex items-center gap-6 border-[1px] border-black">
-                  <div className="increment hover:bg-yellow-600 bg-[#f3a847] p-3">
+                
+                {  
+
+                 singleDataQuantity ? 
+                 <div className="main-area flex items-center gap-6 border-[1px] border-black">
+                  <div
+                  onClick={()=>incrementData(productIncrement({
+                    image:incomingData?.image,
+                    title:incomingData?.title,
+                    price:incomingData?.price,
+                    id: incomingData?.id,
+                  }))}
+                  className="increment hover:bg-yellow-600 bg-[#f3a847] p-3">
                     <FiPlus className="text-[black]" />
                   </div>
                   <div className="amount">
 
                      {  
-                       
-                       singleData.map((item:any)=>(
-                         <p key={item.quantity}>{item.quantity ? item.quantity : 0 }</p>
-                       )) 
-                    } 
+                       singleDataQuantity.quantity ?  singleDataQuantity.quantity : ""
+                     } 
                   </div>
-                  <div className="decrement hover:bg-yellow-600 bg-[#f3a847] p-3">
+                  <div
+                   onClick={()=>decrementData(productDecrement({
+                    image:incomingData?.image,
+                    title:incomingData?.title,
+                    price:incomingData?.price,
+                    id: incomingData?.id,
+                   }))}
+                  className="decrement hover:bg-yellow-600 bg-[#f3a847] p-3">
                     <GoDash className="" />
                   </div>
-                </div>
-                {/* onClick={()=>addDataDispatch(addCart({}))}  */}
+                </div> :
                 <div  className="main-area mt-4 flex items-center gap-6 border-[1px] border-black">
-                  <div className="increment hover:bg-yellow-600 active:bg-white font-mainFont bg-[#f3a847] w-full p-2 text-center">
+                  <div
+                  onClick={()=>addToCart(addCart({
+                    image:incomingData?.image,
+                    title:incomingData?.title,
+                    price:incomingData?.price,
+                    id: incomingData?.id,
+                  }))}
+                  className="increment hover:bg-yellow-600 active:bg-white font-mainFont bg-[#f3a847] w-full p-2 text-center">
                     Add to cart
                   </div>
                 </div>
+
+                 }
+                
               </div>
               {/* order button area end */}
             </div>
@@ -216,8 +261,8 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
             <Carousel
 
 
-                customLeftArrow={<CustomLeftArrow />}
-                customRightArrow={<CustomRightArrow />}
+              customLeftArrow={<CustomLeftArrow />}
+              customRightArrow={<CustomRightArrow />}
               swipeable={true}
               draggable={true}
               showDots={false}
@@ -235,7 +280,11 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
               itemClass="carousel-item-padding-5-px"
             >
               {
-                sliderData.map((item:any) => (
+                sliderData.map((item:any) => {
+                   const singleDataButton = faceCartData.find((faceData:any)=>faceData?.id === item?.id)
+                    console.log("this is datad",singleDataButton?.quantity)
+                    
+                  return(
                   <div key={item.id} className="main mx-8 cursor-pointer rounded-md shadow-xl border-[1px] border-[black] flex flex-col items-center">
                     <div onClick={() => setSliderDataDynamic(item?.id)} className="image h-full">
                       <Image className="w-full h-40 object-cover" src={item.image} width={100} height={100} alt="slide" />
@@ -255,16 +304,30 @@ function Page({ searchParams }: { searchParams: { id: string } }) {
                       {/* prize and wish list area end */}
 
                       {/* add to cart area start */}
-                      <div 
+                      <div className="main-button">
+                        {
+                          singleDataButton ?
+                           <div className="main bg-indigo-700 text-center py-2">
+                              <p className="text-white">Product added</p> 
+                           </div>:
+                          <div 
+                           onClick={()=>addToCartSliderData(addCart({
+                              image:item?.image,
+                              title:item?.title,
+                              price:item?.price,
+                              id: item?.id,
+                           }))}
+                          className="button w-full bg-[#082f49] text-center hover:bg-indigo-700 duration-300 text-white">
+                             <p className="py-2">Add to cart</p>
+                          </div> 
+                        }
                       
-                      
-                      className="button w-full bg-indigo-500 text-center hover:bg-indigo-700 duration-300 text-white">
-                        <p>Add to cart</p>
                       </div>
                       {/* add cart area end */}
                     </div>
                   </div>
-                ))
+                  )
+              })
               }
             </Carousel>
         </div>
