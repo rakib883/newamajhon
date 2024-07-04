@@ -24,6 +24,8 @@ import { GoHome } from "react-icons/go";
 import Seperator from './Seperator';
 import { IoIosHelpBuoy } from "react-icons/io";
 import { CiLogin } from "react-icons/ci";
+import { FiUserPlus } from "react-icons/fi";
+
 
 function Header() {
 
@@ -141,8 +143,17 @@ function Header() {
   }
   // profile handeler end
 
+
+  //  mobile profile handeler start
+  const [mobile,setMobile] = useState(false)
+   const mobileProfileHandeler =()=>{
+    setMobile(!mobile)
+   }
+  // mobile profile handeler end
+
+
   return (
-    <div className="bg-[#131921] sticky top-0 z-40">
+    <div className="bg-[#131921] sticky top-0 z-40 ">
        { openModal ?
           <div className={`${openModal === 2 ? "hidden" : ""}`}>
                 <div classname="">
@@ -318,6 +329,66 @@ function Header() {
             <div className="content cursor-pointer ">
               <FaRegHeart className="text-white text-2xl" />
             </div>
+            {/* mobile login area start */}
+            <div onClick={mobileProfileHandeler} className="main md:hidden group  flex justify-center items-center cursor-pointer">
+                  {
+                    session ? 
+                    <div  className="main text-white overflow-x-hidden    ">
+                      <Image className="rounded-full" src={session?.user?.image} height={22} width={22} alt="user"/>
+                            <div className={`profile-option w-[50%] bg-red absolute  top-[60px] left-[50%] `}>
+                            {/* mobile profile area start */}
+                             {
+                               mobile &&
+                                <motion.div 
+                                initial={{ x: "100%" }}
+                                animate={{ x: "calc(100% - 100%)" }}
+                                className="profile text-black top-14 w-full border bg-white rounded-md">
+                                    <div className="all-content m-4 cursor-pointer ">
+                                        <div className="user flex gap-2 items-center">
+                                        <FaRegUser /> <p>Account</p>
+                                        </div>
+                                    </div>
+                                    <div className="all-content m-4 cursor-pointer">
+                                        <div className="user flex gap-2 items-center">
+                                        <FaRegMessage /> <p className="text-black">Message</p>
+                                        </div>
+                                    </div>
+                                    <div className="all-content m-4 cursor-pointer">
+                                        <div className="user flex gap-2 items-center">
+                                        <FaRegHeart /> <p>Wishlist</p>
+                                        </div>
+                                    </div>
+                                    <div className="all-content m-4 cursor-pointer">
+                                        <div className="user flex gap-2 items-center">
+                                        <GoHome /> <p>Boking</p>
+                                        </div>
+                                    </div>
+                                    <Seperator/>
+                                    <div className="all-content m-4 cursor-pointer">
+                                        <div className="user flex gap-2 items-center">
+                                        <IoIosHelpBuoy  /> <p>Help</p>
+                                        </div>
+                                    </div>
+                                    <div  onClick={() =>signOut()} className="all-content m-4 cursor-pointer">
+                                        <div className="user flex gap-2 items-center">
+                                          <CiLogin   /> <p>Log out</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                              }
+                            {/* mobile profile are end */}
+                                  </div>
+                              </div>
+                              :
+                              <div className="profile">
+                                <Link href="/login" className="cursor-pointer md:hidden ">
+                                    <FiUserPlus className="text-white text-2xl" />
+                                </Link>
+                            </div>     
+                  }
+             
+            </div>
+            {/* mobile login area end */}
             <div onClick={onOpenModal} className="content cursor-pointer relative">
               <FaShoppingCart className="text-white text-2xl" />
               <div className="badge absolute w-6 h-6 top-[-16px] left-[16px]  border-[#F3A847] border-[2px]  rounded-full flex justify-center items-center">
