@@ -168,7 +168,7 @@ const [Productloading,setProductLoading] = useState(false)
             }
           </div>
           {/* Availability area end */}
-          <div className="price">dfgdf</div>
+          <div className="price"></div>
         </div>
       </div>
       <div className="all-content md:w-[80%]">
