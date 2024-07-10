@@ -19,8 +19,8 @@ function Login() {
 
    
   return (
-    <div className="bg-gradient-to-t flex justify-center items-center from-green-400 to-blue-500 h-screen w-full">
-       <div className=" max-w-lg shadow-xl  bg-blue-50/20 p-10 ">
+    <div className="flex justify-center bg-cover items-center object-cover bg-loginImage h-screen w-full">
+       <div className=" max-w-lg shadow-xl  bg-blue-400 p-10 ">
             <h1 className=" font-mainFont font-semibold text-xl text-center my-8">Hello Wellcome</h1>
             <div className="gmail">
                <h1 className=" font-mainFont  text-[18px]">Inter your gmail</h1>

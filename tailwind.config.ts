@@ -13,7 +13,8 @@ const config: Config = {
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'fetureBanner': "url('../Image/fetureBanner.jpg')",
         "bannerImage": "url('../Image/banner.jpg')",
-        "checkBanner" : "url('./check.jpg')"
+        "checkBanner" : "url('./check.jpg')",
+        "loginImage" : "url(./loginPage.jpg)"
        
       },
       fontFamily: {
