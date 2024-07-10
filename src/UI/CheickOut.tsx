@@ -313,7 +313,7 @@ const pamenthandeler = async()=>{
                 </div>
 
                 {/* create order button start */}
-                <button disabled=""  onClick={pamenthandeler} className="button hover:bg-slate-700 duration-300 text-lg py-2 mx-4 my-4 w-full cursor-pointer text-center font-bold font-mainFont bg-black text-white">
+                <button  onClick={pamenthandeler} className="button hover:bg-slate-700 duration-300 text-lg py-2 mx-4 my-4 w-full cursor-pointer text-center font-bold font-mainFont bg-black text-white">
                     <p>Place order</p>
                 </button>
                 {/* create order button are end */}
